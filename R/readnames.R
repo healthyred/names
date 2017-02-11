@@ -4,12 +4,16 @@
 #' returns a dataset of the first name, last name, what level of honors,
 #' the major.
 #'
-#' @param datafile
-#' @param year
+#' @param datafile the textfile that contains a list of the information of the
+#'     the students in that year
+#' @param year takes in the graduation year of the year of students
 #' @return a matrix of the combined years with the data extracted from each person
-#'
+#' @return a dataframe of the datafile in a formatted way
+#' @examples year2014 <- readnames("~/names/inst/extdata/names2014.txt", "2014")
 #'
 #' @import tidyr
+#'
+#' @export
 
 ##This function will read each line of the datafile, and then produce a vector that
 ##shows the information in the format c(name, family name, class year, major, honors,
@@ -19,11 +23,15 @@ readnames <- function(datafile, year){
 
   library(tidyr)
 
-  ##Reads in the file
+  ##Reads in the file, and all the other corresponding lists to check
   input <- readLines(datafile)
+  master <- readLines("~/names/inst/extdata/master.txt")
+  summa <- readLines("~/names/inst/extdata/summacumlaude.txt")
+  magna <- readLines("~/names/inst/extdata/magnacumlaude.txt")
+  cum <- readLines("~/names/inst/extdata/cumlaude.txt")
 
   ##Initiates the dataset
-  dataset <- matrix(nrow = 1, ncol = 6)
+  dataset <- matrix(nrow = 1, ncol = 7)
 
   ##Iterates through every single line of the names file
   for (row in input){
@@ -35,6 +43,33 @@ readnames <- function(datafile, year){
     honors <- ""
     phi <- ""
     sigma <- ""
+    degree<- "bachelor of arts"
+
+    ##Checks for the type of degree the person graduated with
+
+    ##Checks if the person graduated with masters degree
+    if (row %in% master == TRUE){
+      degree <- "masters"
+    }
+
+    ##Checks if the person graduated summa cum laude
+    if (row %in% summa == TRUE){
+      degree <- "summa cum laude"
+    }
+
+    ##Checks if the person graduated magna cum laude
+    if (row %in% magna == TRUE){
+      degree <- "magna cum laude"
+    }
+
+    ##Checks if the person is cum laude
+    if (row %in% cum == TRUE){
+      degree <- "cum laude"
+    }
+
+    ##Special case issue since some of the later files have a different
+    ##method of representing Sigma XI
+    row <- gsub("[+]","†", row)
 
     ##Checks for Phi Beta Kappa, else NA
     if (grepl("[*]", row) == TRUE){
@@ -80,7 +115,6 @@ readnames <- function(datafile, year){
       major <- test2
     }
 
-
     ##Case where only the name is given and no other information is presented
     else{
       row <- gsub("[*]", "", row)
@@ -92,7 +126,7 @@ readnames <- function(datafile, year){
 
 
     ##Creates the vector and puts it into matrix form
-    namevector <- matrix(c(name, year, major, honors, phi, sigma), nrow = 1, ncol = 6)
+    namevector <- matrix(c(name, year, major, honors, phi, sigma, degree), nrow = 1, ncol = 7)
 
     ##Rbinds all of the row vectors together into a total dataset
 
@@ -100,12 +134,12 @@ readnames <- function(datafile, year){
   }
 
   ##Rename the columns in the dataset
-  colnames(dataset) <- c("name", "year", "major", "honors", "Phi Beta Kappa", "Sigma XI")
+  colnames(dataset) <- c("name", "year", "major", "honors", "Phi Beta Kappa", "Sigma XI", "degree")
 
   ##Turns the dataset into a dataframe and then separates the first name
   ##from the rest of the name
   dataset <- data.frame(dataset)
-  dataset <- extract(dataset, name, c("FirstName", "LastName"),"([^ ]+) (.*)")
+  #dataset <- extract(dataset, name, c("FirstName", "LastName"),"([^ ]+) (.*)")
 
   ##Returns the dataset
   return(dataset)
