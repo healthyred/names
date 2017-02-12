@@ -135,7 +135,7 @@ readnames <- function(datafile, year){
 
     ##checks if the last name has a possibility of being Jewish
     if (tolower(lastname) %in% tolower(jewish) == TRUE){
-     race <- "jewish"
+     ethnicity <- "jewish"
     }
     }
 
