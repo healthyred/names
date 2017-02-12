@@ -20,4 +20,4 @@
 #' }
 #' @name studentdata
 #' @keywords studentdata
-NULL
+'studentdata'

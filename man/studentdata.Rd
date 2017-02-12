@@ -16,6 +16,9 @@
    \item ethnicity = The ethnicity of the person. In this package only
          Jewish is tested for.
 }}
+\usage{
+studentdata
+}
 \description{
 This data frame contains information of Williams College students
 including majors, honors, and the type of degree received upon
