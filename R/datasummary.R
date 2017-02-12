@@ -40,6 +40,10 @@ datasummary <- function(type){
     jew <- data.frame(table(dat$Jewstatus, dat$year, dat$degree))
     colnames(jew) <- c("jewstatus", "year", "degree", "freq")
 
+    ##subsets the dataset so that I can call just jewish or not
+    jew2 <- jew[ jew$jewstatus == "jewish",]
+
+
     ##Creating the proportions of summa per year matrix
 
     ##Creating the proportions of magna per year matrix
@@ -49,7 +53,7 @@ datasummary <- function(type){
     ##Creating the proportions of Jewish people at Williams per year matrix
 
     ##Puts everything together into a plot
-    ggplot(data=jew, aes(x = year, y = freq, group = degree,  col= degree)) + geom_point() + geom_line()
+    ggplot(data=jew, aes(x = year, y = freq, group = interaction(degree, jewstatus),  col= degree, shape = jewstatus)) + geom_point() + geom_line()
   }
 
 

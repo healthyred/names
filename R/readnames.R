@@ -47,7 +47,7 @@ readnames <- function(datafile, year){
     sigma <- "no"
     degree <- "bachelor of arts"
     lastname <- ""
-    jewstatus <- NA
+    jewstatus <- "not jewish"
 
     ##Checks for the type of degree the person graduated with
 
