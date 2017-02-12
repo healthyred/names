@@ -2,7 +2,8 @@
 #'
 #' Takes in a datafile of names of Williams college graduates, and then
 #' returns a dataset of the first name, last name, what level of honors,
-#' the major.
+#' the major. As well this function tests the last name of each person
+#' to check if the person is of Jewish descent or not.
 #'
 #' @param datafile the textfile that contains a list of the information of the
 #'     the students in that year
@@ -29,9 +30,10 @@ readnames <- function(datafile, year){
   summa <- readLines("~/names/inst/extdata/summacumlaude.txt")
   magna <- readLines("~/names/inst/extdata/magnacumlaude.txt")
   cum <- readLines("~/names/inst/extdata/cumlaude.txt")
+  jewish <- readLines("~/names/inst/extdata/jewishnames.txt")
 
   ##Initiates the dataset
-  dataset <- matrix(nrow = 1, ncol = 7)
+  dataset <- matrix(nrow = 1, ncol = 8)
 
   ##Iterates through every single line of the names file
   for (row in input){
@@ -41,9 +43,11 @@ readnames <- function(datafile, year){
     year <- year
     major <- ""
     honors <- ""
-    phi <- ""
-    sigma <- ""
-    degree<- "bachelor of arts"
+    phi <- FALSE
+    sigma <- FALSE
+    degree <- "bachelor of arts"
+    lastname <- ""
+    ethnicity <- NA
 
     ##Checks for the type of degree the person graduated with
 
@@ -122,11 +126,28 @@ readnames <- function(datafile, year){
       name <- row
       major <- NA
       honors <- NA
+
+    ##Creates an new variable by spliting up all of the words in the name
+    manipulate <- strsplit(name, ' ')
+
+    ##Sets the last name to the last word in the name
+    lastname = sapply(manipulate, function(x) x[length(x)])
+
+    ##checks if the last name has a possibility of being Jewish
+    if (tolower(lastname) %in% tolower(jewish) == TRUE){
+     race <- "jewish"
+    }
     }
 
-
     ##Creates the vector and puts it into matrix form
-    namevector <- matrix(c(name, year, major, honors, phi, sigma, degree), nrow = 1, ncol = 7)
+    namevector <- matrix(c(name,
+                           year,
+                           major,
+                           honors,
+                           phi,
+                           sigma,
+                           degree,
+                           ethnicity), nrow = 1, ncol = 8)
 
     ##Rbinds all of the row vectors together into a total dataset
 
@@ -134,12 +155,19 @@ readnames <- function(datafile, year){
   }
 
   ##Rename the columns in the dataset
-  colnames(dataset) <- c("name", "year", "major", "honors", "Phi Beta Kappa", "Sigma XI", "degree")
+  colnames(dataset) <- c("name",
+                         "year",
+                         "major",
+                         "honors",
+                         "Phi Beta Kappa",
+                         "Sigma XI",
+                         "degree",
+                         "ethnicity")
 
   ##Turns the dataset into a dataframe and then separates the first name
   ##from the rest of the name
   dataset <- data.frame(dataset)
-  #dataset <- extract(dataset, name, c("FirstName", "LastName"),"([^ ]+) (.*)")
+  #dataset <- extract(dataset, name, c("FirstName", "LastName"),"(.*) ([^ ]+)")
 
   ##Returns the dataset
   return(dataset)
