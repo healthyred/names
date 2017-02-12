@@ -118,4 +118,8 @@ datasummary <- function(type){
       scale_color_discrete(name="Legend") +
       theme(plot.title = element_text (size = 16, face = "bold", color = "purple"))
   }
+
+  else{
+    warning("The specified type does not exist. Enter ?statsummary or help(statsummary) to view all the summary options available.")
+  }
 }
