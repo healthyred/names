@@ -43,11 +43,11 @@ readnames <- function(datafile, year){
     year <- year
     major <- ""
     honors <- ""
-    phi <- FALSE
-    sigma <- FALSE
+    phi <- "no"
+    sigma <- "no"
     degree <- "bachelor of arts"
     lastname <- ""
-    ethnicity <- NA
+    jewstatus <- NA
 
     ##Checks for the type of degree the person graduated with
 
@@ -75,20 +75,14 @@ readnames <- function(datafile, year){
     ##method of representing Sigma XI
     row <- gsub("[+]","†", row)
 
-    ##Checks for Phi Beta Kappa, else NA
+    ##Checks for Phi Beta Kappa
     if (grepl("[*]", row) == TRUE){
-      phi <- "TRUE"
-    }
-    else{
-      phi <- NA
+      phi <- "yes"
     }
 
-    ##Checks for Sigma XI, else NA
+    ##Checks for Sigma XI
     if (grepl("†", row) == TRUE){
-      sigma <- "TRUE"
-    }
-    else{
-      sigma <- NA
+      sigma <- "yes"
     }
 
     ##Identifies and spits out the name of the row
@@ -135,7 +129,7 @@ readnames <- function(datafile, year){
 
     ##checks if the last name has a possibility of being Jewish
     if (tolower(lastname) %in% tolower(jewish) == TRUE){
-     ethnicity <- "jewish"
+     jewstatus <- "jewish"
     }
     }
 
@@ -147,7 +141,7 @@ readnames <- function(datafile, year){
                            phi,
                            sigma,
                            degree,
-                           ethnicity), nrow = 1, ncol = 8)
+                           jewstatus), nrow = 1, ncol = 8)
 
     ##Rbinds all of the row vectors together into a total dataset
 
@@ -162,7 +156,7 @@ readnames <- function(datafile, year){
                          "Phi Beta Kappa",
                          "Sigma XI",
                          "degree",
-                         "ethnicity")
+                         "Jewstatus")
 
   ##Turns the dataset into a dataframe and then separates the first name
   ##from the rest of the name
