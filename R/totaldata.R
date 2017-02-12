@@ -31,19 +31,22 @@ totaldata <- function(){
 
 
   ##Combines all of the matrixes together by rows
-  x <- rbind(year2003, year2004)
-  x <- rbind(x, year2005)
-  x <- rbind(x, year2006)
-  x <- rbind(x, year2007)
-  x <- rbind(x, year2008)
-  x <- rbind(x, year2009)
-  x <- rbind(x, year2010)
-  x <- rbind(x, year2011)
-  x <- rbind(x, year2012)
-  x <- rbind(x, year2013)
-  x <- rbind(x, year2014)
-  x <- rbind(x, year2015)
+  data <- rbind(year2003, year2004)
+  data <- rbind(data, year2005)
+  data <- rbind(data, year2006)
+  data <- rbind(data, year2007)
+  data <- rbind(data, year2008)
+  data <- rbind(data, year2009)
+  data <- rbind(data, year2010)
+  data <- rbind(data, year2011)
+  data <- rbind(data, year2012)
+  data <- rbind(data, year2013)
+  data <- rbind(data, year2014)
+  data <- rbind(data, year2015)
+
+  ##Eliminates the rows with all NA values
+  data <- data[rowSums(is.na(data)) != ncol(data),]
 
   ##returns the complete student dataframe
-  return(x)
+  return(data)
 }
