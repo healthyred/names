@@ -12,7 +12,7 @@
 #'     but also includes the proportion of non-jewish people so comparisons can be made.
 #'
 #' @return Desired infomation from the kind of output specified by \code{type}.
-#' @example datasummary("timeline")
+#' @example datasummary(type)
 #'
 #' @import ggplot2
 #' @export
