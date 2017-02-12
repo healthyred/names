@@ -53,7 +53,7 @@ datasummary <- function(type){
       geom_line() +
       ylab("Number of Jews") +
       xlab("Year") +
-      ggtitle("Graduation Type of Jews Attending Williams Per Year\n") +
+      ggtitle("Merit Levels of Graduating Jews\n") +
       scale_color_discrete(name="Legend") +
       theme(plot.title = element_text (size = 16, face = "bold", color = "purple"))
   }
@@ -77,7 +77,7 @@ datasummary <- function(type){
       geom_line() +
       ylab("Proportion of Jews") +
       xlab("Year") +
-      ggtitle("Proportion of Graduation Type of Jews\n") +
+      ggtitle("Proportion of Merit Levels of Jews\n") +
       scale_color_discrete(name="Legend") +
       theme(plot.title = element_text (size = 16, face = "bold", color = "purple"))
   }
@@ -114,7 +114,7 @@ datasummary <- function(type){
       geom_line() +
       ylab("Proportion of Jews") +
       xlab("Year") +
-      ggtitle("Proportion of Graduation Type of Jews Vs. Non-Jewish\n") +
+      ggtitle("Proportion of Merit Levels of Jews Vs. Non-Jewish\n") +
       scale_color_discrete(name="Legend") +
       theme(plot.title = element_text (size = 16, face = "bold", color = "purple"))
   }

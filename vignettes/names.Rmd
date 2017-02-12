@@ -14,14 +14,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Intrduction
 
-The data on graduating students of Williams College is an interesting dataset that shows the merit each individual student has received at Williams. The dataframe constructed from this data contains information from all students from the Class of 2003 to the Class of 2015; however, only students who had graduated with honors had their majors mentioned, so the dataset does not provide information on the major of every single student. It includes students who have graduated from the undergraduate class, as well as the economic policy graduate school students. The variables in the dataset include graduation year, major (if avaliable), type of honors (if avaliable), Phi Beta Kappa, Sigma XI, and ethnicity (specifically is the student of Jewish descent). 
+The data on graduating students of Williams College is an interesting dataset that shows the merit each individual student has received at Williams. The dataframe constructed from this data contains information from all students from the Class of 2003 to the Class of 2015; however, only students who had graduated with honors had their majors mentioned, so the dataset does not provide information on the major of every single student. It includes students who have graduated from the undergraduate class, as well as the economic policy graduate school students. The variables in the dataset include graduation year, major (if avaliable), type of honors (if avaliable), Phi Beta Kappa, Sigma XI, and ethnicity (specifically is the student of Jewish descent). With the tools avaliable in this package, the success rate of Jewish people at Williams College can be measured.
 
 ## Data
 The data used to construct the overall data frame in this package was taken from the Williams College Course Catalogs, from the website of the Office of The Registrar of Williams College, from years 2003 through 2015 by copy pasting the text directly into text files. Since there was some slight variation in the method that the information was presented each year, some modifications were made to the text files. The data files were changed so that every single line contained the information of only one student, as well any page numbers, and irrelevant information was removed. Eventually, all of the data files were organized in the same homogenous fashion, and allowed for the function **readnames** to easily organized the information into a dataframe. Each row created includes the full name of each person, and is followed by information personal information in the same row. The last variable of ethnicity is not provided by the college. Thus, a list of around 3000 Jewish last names was used to check if the student was of Jewish descent, or not.
 
-```{r, include=FALSE}
-names::
+```{r, echo=FALSE, warning=FALSE}
+names::datasummary("timeline")
+names::datasummary("comparison")
 ```
 
 ## Conclusion
+The summary of the data shows that the mean number of Jews that attend Williams College each class year are ... out of the mean number of students that are in each class year. 
 Currently, the package only tests for students of Jewish descent based on last name, but certainly other ethnicity tests can be added in the future. 
