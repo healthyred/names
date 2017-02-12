@@ -45,7 +45,7 @@ readnames <- function(datafile, year){
     honors <- ""
     phi <- "no"
     sigma <- "no"
-    degree <- "bachelor of arts"
+    degree <- "Bachelor of Arts"
     lastname <- ""
     jewstatus <- "not jewish"
 
@@ -53,22 +53,22 @@ readnames <- function(datafile, year){
 
     ##Checks if the person graduated with masters degree
     if (row %in% master == TRUE){
-      degree <- "masters"
+      degree <- "Masters"
     }
 
     ##Checks if the person graduated summa cum laude
     if (row %in% summa == TRUE){
-      degree <- "summa cum laude"
+      degree <- "Summa Cum Laude"
     }
 
     ##Checks if the person graduated magna cum laude
     if (row %in% magna == TRUE){
-      degree <- "magna cum laude"
+      degree <- "Magna Cum Laude"
     }
 
     ##Checks if the person is cum laude
     if (row %in% cum == TRUE){
-      degree <- "cum laude"
+      degree <- "Cum Laude"
     }
 
     ##Special case issue since some of the later files have a different
@@ -101,10 +101,10 @@ readnames <- function(datafile, year){
 
       ##Checks for the major of the person and the type of honors, else NA for both
       if (grepl("highest", row) == TRUE){
-        honors <- "highest honors"
+        honors <- "Highest Honors"
       }
       else{
-        honors <- "honors"
+        honors <- "Honors"
       }
 
       ##Searches for the major
