@@ -10,6 +10,8 @@
 #'     \code{proportion} creates a line graph of the change in proportion in the graduation types
 #'     that Jewish people receive each year. \code{comparision} does the same thing as proportion,
 #'     but also includes the proportion of non-jewish people so comparisons can be made.
+#'
+#' @return Desired infomation from the kind of output specified by \code{type}.
 #' @example datasummary("timeline")
 #'
 #' @import ggplot2
