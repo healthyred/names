@@ -6,6 +6,8 @@
 #'
 #' @docType data
 #'
+#' @usage data(studentdata)
+#'
 #' @format A dataframe with 8 variables
 #' \itemize{
 #'    \item name = The name of the person.
@@ -15,7 +17,7 @@
 #'    \item PhiBetaKappa = TRUE for in PhiBetaKappa. FALSE for not in.
 #'    \item SigmaXI = TRUE for in SigmaXI. FALSE for not in.
 #'    \item degree = The type of degree and merit level graduated with.
-#'    \item ethnicity = The ethnicity of the person. In this package only
+#'    \item Jewstatus = The ethnicity of the person. In this package only
 #'          Jewish is tested for.
 #' }
 #' @name studentdata
