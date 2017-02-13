@@ -49,12 +49,9 @@ Using rbind all the matrices are combined together in order to create the final 
 
 ```{r, echo=FALSE, warning=FALSE}
 names::datasummary("timeline")
+names::datasummary("comparison")
 ```
 
-
-```{r, echo=FALSE, warning=FALSE}
-names::datasummary("timeline")
-```
 
 ## Conclusion
 The data implies that each year there is an average of 27.53 students of Jewish descent attending Williams, copared to an average of 530.61 students that are not of Jewish descent. The range of Jewish students in each class year was 13 with the minimum of 21 students in the 2010, and a maximum of 34 students in 2005. It can be seen from the timeline graphic that the count of Jewish people at Williams College has stayed relatively the same over the course of 13 years. We can see that there is not much deviation from the mean of 27 Jewish students attending Williams throughout the years. This may point toward the fact that Williams College is fulfilling quotas of certain ethnic groups. Significant conclusions, however, can only be drawn after receiving data and testing not just Jewish people but African Americans, Asians, and Caucasians. The comparison graphic show that Jewish people at Williams perform, on average, the same as the non-Jewish population. If success is akin to receiving a Master's degree or achieving any sort of cum laude, then the Jewish population typically performs on par with the rest of the student population as we can see that the proportions for both groups are relatively the same. Although there are some dips in performance in the classes of 2007 and 2015, and some out performance by the Jewish population in the classes of 2008, 2013 and 2015. From this data, we can infer that the Jewish ethnicity is independent of success at Williams, as the proportions of merit levels of the Jewish population and the non-Jewish population are relatively similar. 
