@@ -10,7 +10,7 @@
 #'     \code{proportion} creates a line graph of the change in proportion in the graduation types
 #'     that Jewish people receive each year. \code{comparision} does the same thing as proportion,
 #'     but also includes the proportion of non-jewish people so comparisons can be made.
-#'     \code{proportiontest} runs a difference of proportions test between jewish and non-jewish
+#'     \code{differencetest} runs a difference of proportions test between jewish and non-jewish
 #'     students with H0: 0 and HA: not 0.
 #'
 #' @return Desired infomation from the kind of output specified by \code{type}.
@@ -121,7 +121,7 @@ datasummary <- function(type){
       theme(plot.title = element_text (size = 16, face = "bold", color = "purple"))
   }
 
-  else if (type == "proportiontest"){
+  else if (type == "differencetest"){
 
     ##Subsets the total number of jewish people each year
     totaljew <- count[count$Var2 == "jewish",]
