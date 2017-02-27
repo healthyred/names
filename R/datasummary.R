@@ -10,6 +10,8 @@
 #'     \code{proportion} creates a line graph of the change in proportion in the graduation types
 #'     that Jewish people receive each year. \code{comparision} does the same thing as proportion,
 #'     but also includes the proportion of non-jewish people so comparisons can be made.
+#'     \code{proportiontest} runs a difference of proportions test between jewish and non-jewish
+#'     students with H0: 0 and HA: not 0.
 #'
 #' @return Desired infomation from the kind of output specified by \code{type}.
 #' @example datasummary(type)
@@ -117,6 +119,55 @@ datasummary <- function(type){
       ggtitle("Proportion of Merit Levels of Jews Vs. Non-Jewish\n") +
       scale_color_discrete(name="Legend") +
       theme(plot.title = element_text (size = 16, face = "bold", color = "purple"))
+  }
+
+  else if (type == "proportiontest"){
+
+    ##Subsets the total number of jewish people each year
+    totaljew <- count[count$Var2 == "jewish",]
+    jewdenominator <- rep(c(totaljew$Freq), times = 5)
+
+    ##Subsets the total number of non jewish people each year
+    totalnonjew <- count[count$Var2 == "not jewish",]
+    nondenominator <- rep(c(totalnonjew$Freq), times = 5)
+
+    ##Creates the list of just jewish
+    jewonly <- jew[ jew$jewstatus == "jewish",]
+    jewonly$freq/ jewdenominator
+    jewonly <- transform(jewonly, proportion = freq / jewdenominator)
+
+    ##Creates the list of non jewish
+    nonjewish <- jew[ jew$jewstatus == "not jewish",]
+    nonjewish$freq/ nondenominator
+    nonjewish <- transform(nonjewish, proportion = freq/nondenominator)
+
+    ##Subsets the dataframe into proportions separated by cum laude, magna cum laude, summa cum laude, masters
+    ##Then runs the t.test function to test for a difference of means between the success rates of each group
+
+    ##Bachelors of Arts test
+    bachjew <- jewonly[jewonly$degree == "Bachelor of Arts",]
+    bachnon <- nonjewish[nonjewish$degree == "Bachelor of Arts",]
+    t.test(bachjew$proportion, bachnon$proportion)
+
+    ##Cum Laude test
+    cumjew <- jewonly[jewonly$degree == "Cum Laude",]
+    cumnon <- nonjewish[nonjewish$degree == "Cum Laude",]
+    t.test(cumjew$proportion, cumnon$proportion)
+
+    ##Magna Cum Laude test
+    magnajew <- jewonly[jewonly$degree == "Magna Cum Laude",]
+    magnanon <- nonjewish[nonjewish$degree == "Magna Cum Laude",]
+    t.test(magnajew$proportion, magnanon$proportion)
+
+    ##Summa Cum Laude test
+    summajew <- jewonly[jewonly$degree == "Summa Cum Laude",]
+    summanon <- nonjewish[nonjewish$degree == "Summa Cum Laude",]
+    t.test(summajew$proportion, summanon$proportion)
+
+    ##Masters Test
+    masterjew <- jewonly[jewonly$degree == "Masters",]
+    masternon <- nonjewish[nonjewish$degree == "Masters",]
+    t.test(masterjew$proportion, masternon$proportion)
   }
 
   else{
